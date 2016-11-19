@@ -1,0 +1,7 @@
+[db]
+file=/path/to/openhr20.sqlite
+
+[valves]
+living=1
+bathroom=2
+kitchen=3
