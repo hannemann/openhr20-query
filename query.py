@@ -10,13 +10,13 @@ def main(argv):
     request = ''
     
     try:
-        opts, args = getopt.getopt(argv, "v:br", ["valve="])
+        opts, args = getopt.getopt(argv, "d:brv", ["device="])
     except getopt.GetGetoptError:
         print("main.py -v <valve> -b")
         sys.exit(2)
         
     for opt, arg in opts:
-        if opt in ("-v", "--valve"):
+        if opt in ("-d", "--device"):
             try:
                 valve = config.get("valves", arg)
             except configparser.NoSectionError:
@@ -29,6 +29,8 @@ def main(argv):
             request = 'battery'
         elif opt == "-r":
             request = 'real'
+        elif opt == "-v":
+            request = 'valve'
     
     Route(request, valve)
         

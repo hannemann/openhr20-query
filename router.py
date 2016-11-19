@@ -1,5 +1,6 @@
 from query.battery import Battery
 from query.real import Real
+from query.valve import Valve
 
 class Route():
     
@@ -9,3 +10,5 @@ class Route():
             print(Battery(valve))
         elif query == 'real':
             print(Real(valve))
+        elif query == 'valve':
+            print(Valve(valve))
