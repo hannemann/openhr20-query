@@ -1,5 +1,5 @@
 /**/*.pyc
 /**/*.*~
 /**/__pycache__
-/config.ini
+/openhr20-query.ini
 /openhr20.sqlite

@@ -4,7 +4,7 @@ from config import configparser, config
 from router import Route
 import sys, getopt
 
-def printHelp():
+def usage():
     print()
     print("Retrieve info from openhr20 database")
     print()
@@ -21,7 +21,7 @@ def printHelp():
     print("\t\t\t-o Window open/closed")
     print("\t\t\t-c Connection status")
     print("\t--format\t-f format string")
-    print("\t\t\t   e.g.: Real Temperature: %r°")
+    print("\t\t\t   e.g.: Real Temperature: %rC")
     print()
     
 
@@ -35,12 +35,12 @@ def main(argv):
     except getopt.GetoptError as e:
         print()
         print("Error: " + str(e))
-        printHelp()
+        usage()
         sys.exit(2)
 
     for opt, arg in opts:
         if opt == "-h":
-            printHelp()
+            usage()
             sys.exit(0)
         elif opt in ("-d", "--device"):
             try:
