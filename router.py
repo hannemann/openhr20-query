@@ -6,10 +6,11 @@ from query.battery import Battery
 from query.error import Error
 from query.window import Window
 from query.connection import Connection
+from query.format import Format
 
 class Route():
     
-    def __init__(self, query, valve):
+    def __init__(self, query, valve, arg):
         
         if query == 'mode':
             print(Mode(valve))
@@ -34,3 +35,6 @@ class Route():
             
         elif query == 'connection':
             print(Connection(valve))
+            
+        elif query == 'format':
+            print(Format(valve, arg))

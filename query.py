@@ -10,17 +10,18 @@ def printHelp():
     print()
     print("\tquery.py -d <device_name> -mvrwbeof")
     print()
-    print("\t\t-h\t\tPrint this help screen")
-    print("\t\t-m\t\tMode")
-    print("\t\t-v\t\tValve position")
-    print("\t\t-r\t\tReal temperature")
-    print("\t\t-w\t\tWanted temperature")
-    print("\t\t-b\t\tBattery status")
-    print("\t\t-e\t\tError number")
-    print("\t\t-o\t\tWindow open/closed")
-    print("\t\t-c\t\tConnection status")
-    print("\t\t-f\t\tformat string")
-    print("\t\t\t\te.g.: Real Temperature: %r°")
+    print("\t--device\t-d The device you want to query")
+    print("\t\t\t-h Print this help screen")
+    print("\t\t\t-m Mode")
+    print("\t\t\t-v Valve position")
+    print("\t\t\t-r Real temperature")
+    print("\t\t\t-w Wanted temperature")
+    print("\t\t\t-b Battery status")
+    print("\t\t\t-e Error number")
+    print("\t\t\t-o Window open/closed")
+    print("\t\t\t-c Connection status")
+    print("\t--format\t-f format string")
+    print("\t\t\t   e.g.: Real Temperature: %r°")
     print()
     
 
@@ -30,13 +31,13 @@ def main(argv):
     request = ''
     
     try:
-        opts, args = getopt.getopt(argv, "d:hmvrwbeocf", ["device="])
+        opts, args = getopt.getopt(argv, "d:f:hmvrwbeoc", ["device=", "format="])
     except getopt.GetoptError as e:
         print()
         print("Error: " + str(e))
         printHelp()
         sys.exit(2)
-        
+
     for opt, arg in opts:
         if opt == "-h":
             printHelp()
@@ -66,8 +67,10 @@ def main(argv):
             request = 'window'
         elif opt == "-c":
             request = 'connection'
+        elif opt == "-f":
+            request = 'format'
     
-    Route(request, valve)
+    Route(request, valve, arg)
         
 if __name__ == "__main__":
     main(sys.argv[1:])
