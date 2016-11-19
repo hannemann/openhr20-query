@@ -5,6 +5,8 @@ class Simple(Db):
     
     valve = 0
     
+    query = 'SELECT * FROM log WHERE addr=? ORDER BY time DESC LIMIT 1'
+    
     def __init__(self, valve):
         Db.__init__(self)
         self.valve = valve
@@ -15,9 +17,9 @@ class Simple(Db):
         except sqlite3.OperationalError:
             print("SQLite operational error. Database file invalid or not found")
             sys.exit(1);
-        result = self.cursor.fetchone()
-        if result is not None:
-            return result[0]
+        row = self.cursor.fetchone()
+        if row is not None:
+            return row
         else:
             return 'valve ' + str(self.valve) + 'not found'
         
@@ -26,5 +28,3 @@ class Simple(Db):
         self.close()
         return self.format(value)
     
-    def format(self, value):
-        return str(value)

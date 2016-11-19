@@ -1,6 +1,6 @@
 from query.simple import Simple
 
-class Real(Simple):
+class Wanted(Simple):
         
     def format(self, row):
-        return str(row["real"]/float(100))
+        return str(row["wanted"]/float(100))

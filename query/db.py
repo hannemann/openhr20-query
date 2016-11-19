@@ -11,6 +11,7 @@ class Db:
     
     def connect(self):
         self.conn = sqlite3.connect(self.file)
+        self.conn.row_factory = sqlite3.Row
         return self
 
     def getFile(self):
