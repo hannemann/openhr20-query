@@ -7,7 +7,8 @@ class Simple(Db):
     valve = 0
     
     query = 'SELECT * FROM log WHERE addr=? ORDER BY time DESC LIMIT 1'
-    query_all = 'SELECT * FROM log  GROUP BY addr ORDER BY time DESC'
+    query_all = 'select * from log where id in (select max(id) from log group by addr)'
+    #query_all = 'SELECT * FROM log  GROUP BY addr ORDER BY time DESC'
     
     def __init__(self, valve):
         Db.__init__(self)
