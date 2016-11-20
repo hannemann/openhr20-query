@@ -8,7 +8,7 @@ def usage():
     print()
     print("Retrieve info from openhr20 database")
     print()
-    print("\tquery.py -d <device_name> -mvrwbeof")
+    print("\tquery.py -d <device_name|all> -mvrwbeof")
     print()
     print("\t--device\t-d The device you want to query")
     print("\t\t\t-h Print this help screen")
@@ -44,7 +44,10 @@ def main(argv):
             sys.exit(0)
         elif opt in ("-d", "--device"):
             try:
-                valve = config.get("valves", arg)
+                if arg != "all":
+                    valve = config.get("valves", arg)
+                else:
+                    valve = arg
             except configparser.NoSectionError:
                 print('Section "valves" not found in configuration')
                 sys.exit(1)
