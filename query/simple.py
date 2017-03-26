@@ -7,7 +7,7 @@ class Simple(Db):
     valve = 0
     
     query = 'SELECT * FROM log WHERE id in (select max(id) from log where addr = ?)'
-    query_all = 'select * from log where id in (select max(id) from log group by addr)'
+    query_all = 'select * from log where id in (select id from log order by id desc, addr limit 2000) group by addr;'
     
     def __init__(self, valve):
         Db.__init__(self)
