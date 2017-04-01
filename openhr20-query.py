@@ -2,7 +2,9 @@
 
 from config import configparser, config
 from router import Route
-import sys, getopt
+import sys
+import getopt
+
 
 def usage():
     print()
@@ -29,6 +31,7 @@ def main(argv):
 
     valve = 0
     request = ''
+    arg = None
     
     try:
         opts, args = getopt.getopt(argv, "d:f:hmvrwbeoc", ["device=", "format="])
@@ -72,8 +75,11 @@ def main(argv):
             request = 'connection'
         elif opt == "-f":
             request = 'format'
-    
-    Route(request, valve, arg)
+
+    if arg is not None:
+        Route(request, valve, arg)
+    else:
+        usage()
         
 if __name__ == "__main__":
     main(sys.argv[1:])

@@ -8,7 +8,8 @@ from query.window import Window
 from query.connection import Connection
 from query.format import Format
 
-class Route():
+
+class Route:
     
     def __init__(self, query, valve, arg):
         

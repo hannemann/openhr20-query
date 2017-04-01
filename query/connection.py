@@ -1,6 +1,7 @@
 from query.simple import Simple
 from time import time
 
+
 class Connection(Simple):
     
     threshold = {
@@ -18,4 +19,3 @@ class Connection(Simple):
             return "warning"
         else:
             return "OK"
-

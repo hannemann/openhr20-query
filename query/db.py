@@ -1,20 +1,23 @@
-import sqlite3, sys
+import sqlite3
+import sys
 from config import configparser, config
+
 
 class Db:
 
     conn = None
     file = None
+    cursor = None
     
     def __init__(self):
-        self.getFile().connect().getCursor()
+        self.get_file().connect().get_cursor()
     
     def connect(self):
         self.conn = sqlite3.connect(self.file)
         self.conn.row_factory = sqlite3.Row
         return self
 
-    def getFile(self):
+    def get_file(self):
         try:
             self.file = config.get("db", "file")
         except configparser.NoSectionError:
@@ -26,7 +29,7 @@ class Db:
         
         return self
     
-    def getCursor(self):
+    def get_cursor(self):
         self.cursor = self.conn.cursor()
         return self
     
